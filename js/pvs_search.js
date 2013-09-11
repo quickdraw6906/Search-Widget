@@ -38,7 +38,7 @@ This method searches the api for elections, candidates and officials based on th
                     this.iface2 = __PVS_SERVER + "Candidates.getByZip?o=JSON&key=" + __PVS_KEY + "&zip5=" + theZip5 + "&zip4=" + theZip4 + "&jsonCallback=?";
                     this.iface3 = __PVS_SERVER + "Officials.getByZip?o=JSON&key=" + __PVS_KEY + "&zip5=" + theZip5 + "&zip4=" + theZip4 + "&jsonCallback=?";
         }
-                $.getJSON(this.iface,
+                jQuery.getJSON(this.iface,
                         function(data) {
                 var election_code = '';
                 var widget_code = get_search_box_code();
@@ -52,7 +52,7 @@ This method searches the api for elections, candidates and officials based on th
                             widget_code+='<div class="pvs_header2">Current Elections</div> <ul class="pvs_special">' + data.elections.zipMessage + '<br/> <br/> </ul>';
                         else
                             widget_code+='<div class="pvs_header2">Current Elections</div> <ul class="pvs_search_widget_ul"></ul>';
-                                                $.each(data.elections.election, function (i, cand) {
+                                                jQuery.each(data.elections.election, function (i, cand) {
                             if(cand.officeTypeId=='G'){
                                                      var link = 'http://votesmart.org/election_governor_five_categories.php?state_id=' + cand.stateId;
                                                          var html = '<li class="pvs_search_widget_li"><a href="' + link + '">' + cand.name;
@@ -80,7 +80,7 @@ This method searches the api for elections, candidates and officials based on th
         }
 
         function get_officials(need_officials, election_code) {
-                $.getJSON(this.iface3,
+                jQuery.getJSON(this.iface3,
                         function(data) {
                 var widget_array = new Array("", "", "", "", "", "");
                 var widget_code = '';
@@ -91,7 +91,7 @@ This method searches the api for elections, candidates and officials based on th
                             widget_code+='<div class="pvs_header1">Current Officials</div> <ul class="pvs_search_widget_ul_o pvs_special">' + data.candidateList.zipMessage + '<br/> </ul>';
                         else
                             widget_code+='<div class="pvs_header1">Current Officials</div> <ul class="pvs_search_widget_ul_o"></ul>';
-                                                $.each(data.candidateList.candidate, function (i, cand) {
+                                                jQuery.each(data.candidateList.candidate, function (i, cand) {
                             var require_dash = 1;
                             if(cand.firstName) {    
                                                     var link = 'http://votesmart.org/summary.php?can_id=' + cand.candidateId;
@@ -177,7 +177,7 @@ This method searches the api for elections, candidates and officials based on th
     }
 
         function get_candidates(need_candidates, election_code, officials_array) {
-                $.getJSON(this.iface2,
+                jQuery.getJSON(this.iface2,
                         function(data) {
                 var widget_array = new Array("", "", "", "", "", "");
                 var widget_code = '';
@@ -189,7 +189,7 @@ This method searches the api for elections, candidates and officials based on th
                             widget_code+='<ul class="pvs_special">' + data.candidateList.zipMessage + '<br/> </ul>';
                         else
                             widget_code+='<ul class="pvs_search_widget_ul_c"></ul>';
-                                                $.each(data.candidateList.candidate, function (i, cand) {
+                                                jQuery.each(data.candidateList.candidate, function (i, cand) {
                                                         //alert('ID: ' + cand.candidateId + ' Status: ' + cand.electionStatus);
                                                         if (
                                                                 cand.electionStatus != 'Lost' 
@@ -288,7 +288,7 @@ This method searches the api for candidates and officials based on the last name
     function get_officials_by_last_name(theName){
                 this.iface = __PVS_SERVER + "Candidates.getByLastname?o=JSON&key=" + __PVS_KEY + "&lastName=" + theName + "&jsonCallback=?";
                 this.iface2 = __PVS_SERVER + "Officials.getByLastname?o=JSON&key=" + __PVS_KEY + "&lastName=" + theName + "&jsonCallback=?";
-                $.getJSON(this.iface2,
+                jQuery.getJSON(this.iface2,
                         function(data) {
                 var widget_array = new Array("", "", "", "", "", "");
                 var widget_code = get_search_box_code();
@@ -297,7 +297,7 @@ This method searches the api for candidates and officials based on the last name
                                     widget_code+='<div class="pvs_header1">Current Officials</div>';
                                     if (typeof data.error == "undefined") {
                         var first=second=third=fourth=fifth=sixth=1;
-                            $.each(data.candidateList.candidate, function (i, cand) {
+                            jQuery.each(data.candidateList.candidate, function (i, cand) {
                             var require_dash = 1;
                             if(cand.firstName) {    
                                                             var link = 'http://votesmart.org/summary.php?can_id=' + cand.candidateId;
@@ -456,7 +456,7 @@ This method searches the api for candidates and officials based on the last name
     }
 
         function get_candidates_by_last_name(need_candidates, officials_array) {
-                $.getJSON(this.iface,
+                jQuery.getJSON(this.iface,
                         function(data) {
                 var widget_array = new Array("", "", "", "", "", "");
                 var widget_code = '';
@@ -464,7 +464,7 @@ This method searches the api for candidates and officials based on the last name
                                         widget_code+='<div class="pvs_header1">Current Candidates</div>';
                                         if (typeof data.error == "undefined") {
                         var first=second=third=fourth=fifth=sixth=1;
-                            $.each(data.candidateList.candidate, function (i, cand) {
+                            jQuery.each(data.candidateList.candidate, function (i, cand) {
                             var require_dash = 1;
                             if(cand.firstName){ 
                                                             var link = 'http://votesmart.org/summary.php?can_id=' + cand.candidateId;
@@ -667,29 +667,29 @@ function get_type(input_value){
 }
 
 function append_code(to_append, election_code, widget_array1, widget_array2){
-    $("#pvs_search").empty();
-        $("#pvs_search").append(to_append);
+    jQuery("#pvs_search").empty();
+        jQuery("#pvs_search").append(to_append);
 
-        $("ul.pvs_search_widget_ul").append(election_code);
+        jQuery("ul.pvs_search_widget_ul").append(election_code);
 
-        $("ul.congressional_official").append(widget_array1[0]);
-        $("ul.gubernatorial_official").append(widget_array1[1]);
-        $("ul.state_official").append(widget_array1[2]);
-        $("ul.presidential_official").append(widget_array1[3]);
-        $("ul.federal_judicial_official").append(widget_array1[4]);
-        $("ul.state_wide_official").append(widget_array1[5]);
+        jQuery("ul.congressional_official").append(widget_array1[0]);
+        jQuery("ul.gubernatorial_official").append(widget_array1[1]);
+        jQuery("ul.state_official").append(widget_array1[2]);
+        jQuery("ul.presidential_official").append(widget_array1[3]);
+        jQuery("ul.federal_judicial_official").append(widget_array1[4]);
+        jQuery("ul.state_wide_official").append(widget_array1[5]);
 
-        $("ul.congressional_candidate").append(widget_array2[0]);
-        $("ul.gubernatorial_candidate").append(widget_array2[1]);
-        $("ul.state_candidate").append(widget_array2[2]);
-        $("ul.presidential_candidate").append(widget_array2[3]);
-        $("ul.federal_judicial_candidate").append(widget_array2[4]);
-        $("ul.state_wide_candidate").append(widget_array2[5]);
+        jQuery("ul.congressional_candidate").append(widget_array2[0]);
+        jQuery("ul.gubernatorial_candidate").append(widget_array2[1]);
+        jQuery("ul.state_candidate").append(widget_array2[2]);
+        jQuery("ul.presidential_candidate").append(widget_array2[3]);
+        jQuery("ul.federal_judicial_candidate").append(widget_array2[4]);
+        jQuery("ul.state_wide_candidate").append(widget_array2[5]);
 }
 
 function now_loading(){
-        $("#pvs_search").empty();
-    $("#pvs_search").append('<div style="text-align: center; width: 100%; padding: 10px;"><img style="border: 0px;" src="http://votesmart.org/static/images/global/loading.gif" alt="' + "loading..." + '" /></div>');
+        jQuery("#pvs_search").empty();
+    jQuery("#pvs_search").append('<div style="text-align: center; width: 100%; padding: 10px;"><img style="border: 0px;" src="http://votesmart.org/static/images/global/loading.gif" alt="' + "loading..." + '" /></div>');
 
 }
 
@@ -707,14 +707,14 @@ This method displays the search box and once submit is entered it takes the inpu
 */
 function pvs_search() {
     // Clear out the search widget
-    $("#pvs_search").empty();
+    jQuery("#pvs_search").empty();
     /**
      * Methods
      */
     this.get_info = get_info;
     function get_info() {
         //$("#pvs_search").append(' <br/>');
-        $("#pvs_search").append(get_search_box_code());
+        jQuery("#pvs_search").append(get_search_box_code());
     }
 
 }

@@ -20,7 +20,7 @@
  * Configuration *
  *****************/
 // Server/Site settings
-var __PVS_DOMROOT = "http://votesmart.org/static/js/widgets/search/";      // Trailing slash required
+var __PVS_DOMROOT = "/";      // Trailing slash required
                                                 // Can also have domain name in var (may have issues with XSS protections)
 var __PVS_SERVER = "http://api.votesmart.org/";
 var __PVS_KEY = '243e0b6d69b73e6986243a50e7a68a0c';

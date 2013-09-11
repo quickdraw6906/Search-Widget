@@ -30,3 +30,11 @@ LICENSE
 Copyright&copy; 2007 Project Vote Smart
 
 Widget code released under the [BSD License](http://www.opensource.org/licenses/bsd-license.php)
+
+FORK DESCRIPTION
+================
+Changes:
+
+This fork was created for WordPress sites. Because Wordpress loads jQuery in 'no-conflicts' mode, the '$' function is not available. This fork replaces all occurances of '$(' with 'jQuery(' and '$.' with 'jQuery.'
+
+

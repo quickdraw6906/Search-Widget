@@ -16,7 +16,7 @@
  *  
  */
 
-$(document).ready(function(){
+jQuery(document).ready(function(){
 
 	var pvs_search_obj = new pvs_search();
 	pvs_search_obj.get_info();
