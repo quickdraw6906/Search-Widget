@@ -39,3 +39,5 @@ This fork was created for WordPress sites. Because Wordpress loads jQuery in 'no
 
 The stylesheet pvs_search.css was also modified to display a very simple layout of the widget (div elements floated left, borders removed, padding tweaked to create a responsive layout).
 
+![Screenshot of modified widget](./screenshot.jpg)
+
